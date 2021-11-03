@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/mytoolbar" />
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/lid_drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="10dp"
+                        android:text="Android 学习用例"
+                        android:textSize="30dp" />
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textView1"
+                        android:onClick="startService"
+                        android:text="启动" />
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/button2"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/button2"
+                        android:onClick="stopService"
+                        android:text="停止" />
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/button"
+                        android:onClick="bindService"
+                        android:text="绑定" />
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/button3"
+                        android:onClick="unbindService"
+                        android:text="解绑服务" />
+
+                    <Button
+                        android:id="@+id/web_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/button"
+                        android:onClick="openWebAcitivity"
+                        android:text="网页View" />
+
+                    <Button
+                        android:id="@+id/notification_simple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/button"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/web_view"
+                        android:onClick="simpleNotification"
+                        android:text="通知" />
+
+                    <Button
+                        android:id="@+id/notification_self"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/button"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/notification_simple"
+                        android:onClick="selfNotification"
+                        android:text="定义通知" />
+
+                    <Button
+                        android:id="@+id/suspend_notification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/button"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/notification_self"
+                        android:onClick="suspendNotification"
+                        android:text="悬挂式" />
+
+                    <Button
+                        android:id="@+id/call_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/suspend_notification"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="call"
+                        android:text="运行时获取权限" />
+
+                    <Button
+                        android:id="@+id/send_broadcast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/suspend_notification"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/call_phone"
+                        android:onClick="call"
+                        android:text="发送广播" />
+
+                    <Button
+                        android:id="@+id/recycler_viewText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/suspend_notification"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/send_broadcast"
+                        android:onClick="Openrecycler"
+                        android:text="recycler_viewText" />
+
+                    <Button
+                        android:id="@+id/recycler_GridText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/call_phone"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="openRecyclerGrid"
+                        android:text="recycler_Grid" />
+
+                    <Button
+                        android:id="@+id/CardView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/call_phone"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/recycler_GridText"
+                        android:onClick="openCardView"
+                        android:text="CardView" />
+
+                    <Button
+                        android:id="@+id/Snackbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/call_phone"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/CardView"
+                        android:onClick="openSnackbar"
+                        android:text="Snackbar" />
+
+                    <Button
+                        android:id="@+id/secondIntent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Snackbar"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="openActivity"
+                        android:text="隐式跳转" />
+
+                    <Button
+                        android:id="@+id/fragmentText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Snackbar"
+                        android:layout_toRightOf="@+id/secondIntent"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="openFragment"
+                        android:text="fragment" />
+
+                    <Button
+                        android:id="@+id/broadcastDynamic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Snackbar"
+                        android:layout_toRightOf="@+id/fragmentText"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="openDynamicBroadCast"
+                        android:text="broadcastDynamic" />
+
+                    <Button
+                        android:id="@+id/view_pager2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/broadcastDynamic"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="openViewPager2Activity"
+                        android:text="viewpager2" />
+
+                    <Button
+                        android:id="@+id/pkHttp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/broadcastDynamic"
+                        android:layout_toRightOf="@+id/view_pager2"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="openOkHttpActivity"
+                        android:text="pkHttp" />
+
+                    <Button
+                        android:id="@+id/Paint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/broadcastDynamic"
+                        android:layout_toRightOf="@+id/pkHttp"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="openPaintActivity"
+                        android:text="Paint" />
+
+                    <Button
+                        android:id="@+id/TextInputLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Paint"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="openTextInputLayout"
+                        android:text="TextInputLayout" />
+
+                </RelativeLayout>
+
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_close"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="侧滑界面，点击回收侧滑" />
+
+        </LinearLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>
