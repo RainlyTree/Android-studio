@@ -18,4 +18,12 @@ class RightFragment: Fragment() {
     ): View? {
         return inflater.inflate(R.layout.right_fragment, container, false)
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
 }

@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiceTest"
         tools:targetApi="n">
-        <activity android:name=".activity.TextInputLayoutActivity"></activity>
+        <activity
+            android:name=".Rxjava2text.textRxjavaActivity"
+            android:exported="false" />
+        <activity android:name=".activity.TextInputLayoutActivity" />
         <activity android:name=".activity.mPaintActivity" />
         <activity android:name=".okhttpTestActivity" />
         <activity android:name=".viewPager2Acitivity" />

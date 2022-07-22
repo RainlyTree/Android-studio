@@ -216,8 +216,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/broadcastDynamic"
-                        android:layout_toRightOf="@+id/view_pager2"
                         android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/view_pager2"
                         android:onClick="openOkHttpActivity"
                         android:text="pkHttp" />
 

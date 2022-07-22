@@ -2,10 +2,8 @@ package com.example.servicetest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.servicetest.databinding.ActivityFragmentTextBinding
-import com.example.servicetest.fragment.LeftFragment
 
 class FragmentTextActivity : AppCompatActivity() {
 

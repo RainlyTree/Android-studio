@@ -32,8 +32,8 @@ import permissions.dispatcher.PermissionRequest
 @RuntimePermissions
 class MainActivity : AppCompatActivity() {
 
-    var _binding: ActivityMainBinding? = null
-    val binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding: ActivityMainBinding
         get() = _binding!!
     var connection: ServiceConnection? = null
     var webView: WebView? = null

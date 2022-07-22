@@ -61,7 +61,7 @@ class viewPager2Acitivity : AppCompatActivity() {
         })
     }
 
-    val changeCallBack = object : ViewPager2.OnPageChangeCallback() {
+    private val changeCallBack = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             val tabCount = tab_layout?.tabCount?.minus(1)
             for(i in 0..(tabCount ?: 0)) {
