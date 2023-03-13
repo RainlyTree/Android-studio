@@ -1,4 +1,4 @@
-package com.example.servicetest
+package com.example.servicetest.activity
 
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.servicetest.DividerItemDecoration
+import com.example.servicetest.HomeAdapter
+import com.example.servicetest.R
+import com.example.servicetest.orientationEnum
 
 class RecyclerViewActivity : AppCompatActivity() {
 
@@ -27,7 +31,7 @@ class RecyclerViewActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycler_view)
         val adapter = list?.let { HomeAdapter(it, this) }
         recyclerView?.adapter = adapter
-        adapter?.setOnItemClickLister(object : HomeAdapter.OnItemClickLister{
+        adapter?.setOnItemClickLister(object : HomeAdapter.OnItemClickLister {
             override fun OnItemClick(view: View, position: Int) {
                 Toast.makeText(this@RecyclerViewActivity, "点击了第" + (position + 1) + "条信息", Toast.LENGTH_SHORT).show()
             }

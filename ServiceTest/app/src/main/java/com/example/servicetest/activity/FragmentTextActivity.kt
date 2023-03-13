@@ -1,8 +1,9 @@
-package com.example.servicetest
+package com.example.servicetest.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.servicetest.R
 import com.example.servicetest.databinding.ActivityFragmentTextBinding
 
 class FragmentTextActivity : AppCompatActivity() {

@@ -10,6 +10,15 @@ import android.view.View
  */
 class mView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
 
+    var radiusWidth = 3f
+
+    var rect: Rect? = null
+    var rectS: Rect? = null
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawColor(Color.WHITE);
@@ -19,6 +28,10 @@ class mView(context: Context, attributeSet: AttributeSet) : View(context, attrib
         paint.style = Paint.Style.STROKE;   //描边
         paint.strokeWidth = 3F;
         paint.strokeCap = Paint.Cap.ROUND
+
+        canvas.drawCircle(width.toFloat() / 2, width.toFloat() / 2, (width.toFloat() - 3) / 2, paint)
+
+
         // 绘制圆形
         canvas.drawCircle(40F, 40f, 30f, paint);
         // 绘制正方形
@@ -53,6 +66,9 @@ class mView(context: Context, attributeSet: AttributeSet) : View(context, attrib
         // -----设置填充风格后绘制------
         paint.style = Paint.Style.FILL;   //全填充
         paint.color = Color.RED;
+
+        canvas.drawCircle(width.toFloat() / 2, width.toFloat() / 2, (width.toFloat() - 3) / 2 , paint)
+
         // 绘制圆形
         canvas.drawCircle(120f, 40f, 30f, paint);
         // 绘制正方形

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.example.servicetest.FragmentTextActivity
+import com.example.servicetest.activity.FragmentTextActivity
 import com.example.servicetest.R
 
 /**

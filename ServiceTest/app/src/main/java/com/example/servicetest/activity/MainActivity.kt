@@ -1,11 +1,10 @@
-package com.example.servicetest
+package com.example.servicetest.activity
 
 import android.app.*
 import android.content.*
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
@@ -22,19 +21,27 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.example.servicetest.activity.TextInputLayoutActivity
-import com.example.servicetest.activity.mPaintActivity
+import com.example.servicetest.BroadCastTest
+import com.example.servicetest.CardViewText
+import com.example.servicetest.HelloService
+import com.example.servicetest.LocalReceiver
+import com.example.servicetest.MyBinder
+import com.example.servicetest.R
+import com.example.servicetest.Rxjava2text.textRxjavaActivity
+import com.example.servicetest.WebActivity
+import com.example.servicetest.activity.baseActivity.BaseActivity
 import com.example.servicetest.databinding.ActivityMainBinding
+import com.example.servicetest.recyclerViewGrid
 import com.google.android.material.snackbar.Snackbar
 import permissions.dispatcher.*
 import permissions.dispatcher.PermissionRequest
 
 @RuntimePermissions
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+    override fun initViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
 
-    private var _binding: ActivityMainBinding? = null
-    private val binding: ActivityMainBinding
-        get() = _binding!!
     var connection: ServiceConnection? = null
     var webView: WebView? = null
 
@@ -53,8 +60,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         Log.d(TAG, "onCreate")
         webView = WebView(this)
         webView?.loadUrl("http://www.baidu.com")
@@ -260,6 +265,11 @@ class MainActivity : AppCompatActivity() {
 
     fun openTextInputLayout(view: View) {
         val intent = Intent(this, TextInputLayoutActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun openRxJavaActivity(view: View) {
+        val intent = Intent(this, textRxjavaActivity::class.java)
         startActivity(intent)
     }
 

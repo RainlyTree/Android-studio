@@ -1,12 +1,11 @@
-package com.example.servicetest
+package com.example.servicetest.activity
 
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TableLayout
 import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
-import com.example.servicetest.viewPagerAdapter.MyAdapter
+import com.example.servicetest.R
 import com.example.servicetest.viewPagerAdapter.adapterFragmentPager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

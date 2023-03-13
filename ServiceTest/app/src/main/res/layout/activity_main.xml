@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -21,9 +21,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ScrollView
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -240,9 +241,19 @@
                         android:onClick="openTextInputLayout"
                         android:text="TextInputLayout" />
 
+                    <Button
+                        android:id="@+id/TextRxJavaActivity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Paint"
+                        android:layout_toRightOf="@+id/TextInputLayout"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="openRxJavaActivity"
+                        android:text="TextRxJavaActivity" />
+
                 </RelativeLayout>
 
-            </ScrollView>
+            </androidx.core.widget.NestedScrollView>
         </LinearLayout>
 
         <LinearLayout

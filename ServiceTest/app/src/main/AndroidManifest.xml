@@ -19,12 +19,12 @@
             android:exported="false" />
         <activity android:name=".activity.TextInputLayoutActivity" />
         <activity android:name=".activity.mPaintActivity" />
-        <activity android:name=".okhttpTestActivity" />
-        <activity android:name=".viewPager2Acitivity" />
+        <activity android:name=".activity.okhttpTestActivity" />
+        <activity android:name=".activity.viewPager2Acitivity" />
         <activity android:name=".BroadCastTest" />
-        <activity android:name=".FragmentTextActivity" />
+        <activity android:name=".activity.FragmentTextActivity" />
         <activity
-            android:name=".SecondActivity"
+            android:name=".activity.SecondActivity"
             android:label="@string/title_activity_second"
             android:theme="@style/Theme.ServiceTest.NoActionBar">
             <intent-filter>
@@ -35,9 +35,9 @@
         </activity>
         <activity android:name=".CardViewText" />
         <activity android:name=".recyclerViewGrid" />
-        <activity android:name=".RecyclerViewActivity" />
+        <activity android:name=".activity.RecyclerViewActivity" />
         <activity android:name=".WebActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
