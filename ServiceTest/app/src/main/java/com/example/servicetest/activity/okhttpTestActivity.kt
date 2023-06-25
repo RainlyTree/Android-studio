@@ -30,32 +30,13 @@ class okhttpTestActivity : AppCompatActivity() {
 
         postClient()
 
-
-//        //创建客户端对象
-//        val client = OkHttpClient()
-//        //创建一个Request对象 异步使用
-//        val request = Request.Builder().url("www.baidu.com").build()
-//        //进行请求
-//        //同步请求
-//        val response = client.newCall(request).execute()
-//        //异步请求
-//        client.newCall(request).enqueue(object : Callback {
-//            override fun onFailure(call: Call, e: IOException) {
-//                Toast.makeText(this@okhttpTestActivity, "QWQ 麻了 还有问题", Toast.LENGTH_SHORT).show()
-//            }
-//
-//            override fun onResponse(call: Call, response: Response) {
-//                Toast.makeText(this@okhttpTestActivity, response.message, Toast.LENGTH_SHORT).show()
-//            }
-//
-//        })
     }
 
-    //Get请求
+    //Get请求  异步请求
     fun getClent(url: String) {
         val handler = Handler(Looper.getMainLooper())
         val httpClient = OkHttpClient()
-        val urls = "https://$url"
+        val urls = "http://$url"
         val request = Request.Builder()
             .url(urls)
             .get()
@@ -75,6 +56,14 @@ class okhttpTestActivity : AppCompatActivity() {
             }
 
         })
+
+//        //同步请求玩法
+//        val client = OkHttpClient()
+//        //创建一个Request对象
+//        val request = Request.Builder().url("www.baidu.com").build()
+//        //同步请求
+//        val response = client.newCall(request).execute()
+//        response.body.toString()
     }
 
     //Post请求

@@ -73,6 +73,8 @@ class WebActivity : AppCompatActivity() {
                 super.onReceivedSslError(view, handler, error)
             }
         }
+
+        //处理js的各种交互事件
         webView?.webChromeClient = object : WebChromeClient() {
             override fun onReceivedTitle(view: WebView?, title: String?) {
                 tvTitle?.text = title
@@ -85,6 +87,7 @@ class WebActivity : AppCompatActivity() {
                     tvProgress?.text = "100%"
                 }
             }
+
         }
     }
 

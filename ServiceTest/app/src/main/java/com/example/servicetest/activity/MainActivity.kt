@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
+import androidx.databinding.DataBindingUtil
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.servicetest.BroadCastTest
 import com.example.servicetest.CardViewText
@@ -146,7 +147,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     fun simpleNotification(view: View) {
         val builder: NotificationCompat.Builder = NotificationCompat.Builder(this, "default")
         val mIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.baidu.com"))
-        val pendingIntent = PendingIntent.getActivity(this, 0, mIntent, 0)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            mIntent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
         builder.setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setAutoCancel(true)
@@ -163,7 +169,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val remoteView = RemoteViews(packageName, R.layout.view_fold)
         val builder = NotificationCompat.Builder(this, "self")
         val mIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.baidu.com"))
-        val pendingIntent = PendingIntent.getActivity(this, 0, mIntent, 0)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            mIntent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
         builder.setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setAutoCancel(true)
@@ -181,7 +192,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     fun suspendNotification(view: View) {
         val builder = NotificationCompat.Builder(this, "suspend")
         val mIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.baidu.com"))
-        val pendingIntent = PendingIntent.getActivity(this, 0, mIntent, 0)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            mIntent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
         builder.setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setAutoCancel(true)
@@ -270,6 +286,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     fun openRxJavaActivity(view: View) {
         val intent = Intent(this, textRxjavaActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun openVideoActivity(view: View) {
+        val intent = Intent(this, VideoActivity::class.java)
         startActivity(intent)
     }
 
