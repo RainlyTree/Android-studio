@@ -4,12 +4,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import com.example.servicetest.databinding.ActivityOkhttpTestBinding
 import kotlinx.coroutines.*
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
+import okio.Buffer
 import java.io.IOException
+import java.nio.charset.Charset
+import java.nio.charset.UnsupportedCharsetException
+import java.util.concurrent.TimeUnit
 
 class okhttpTestActivity : AppCompatActivity() {
 
@@ -23,18 +29,18 @@ class okhttpTestActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.tvWww.setOnEditorActionListener { v, _, _ ->
-            getClent(v.text.toString())
+            syncGet(v.text.toString())
             binding.tvWww.text.clear()
             false
         }
 
         postClient()
-
+        postText()
     }
 
     //Get请求  异步请求
     fun getClent(url: String) {
-        val handler = Handler(Looper.getMainLooper())
+        val handler = Handler(mainLooper)
         val httpClient = OkHttpClient()
         val urls = "http://$url"
         val request = Request.Builder()
@@ -57,13 +63,6 @@ class okhttpTestActivity : AppCompatActivity() {
 
         })
 
-//        //同步请求玩法
-//        val client = OkHttpClient()
-//        //创建一个Request对象
-//        val request = Request.Builder().url("www.baidu.com").build()
-//        //同步请求
-//        val response = client.newCall(request).execute()
-//        response.body.toString()
     }
 
     //Post请求
@@ -92,5 +91,108 @@ class okhttpTestActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    fun postText() {
+        val client = OkHttpClient()
+        val body = FormBody.Builder()
+            .add("username", "wildma")
+            .add("password", "123456")
+            .build()
+        val request = Request.Builder()
+            .url("https://postman-echo.com/post")
+            .post(body)
+            .build()
+        getRequestLog(request)
+        val call = client.newCall(request)
+        call.enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    getResponseLog(response)
+                }
+            }
+
+        })
+    }
+
+    val TAG = "syncGet"
+    private val UTF8 = Charset.forName("UTF-8")
+
+    fun syncGet(url: String) {
+        val okhttpClient = OkHttpClient().newBuilder()
+            .connectTimeout(10L, TimeUnit.SECONDS)  //设置超时时间
+            .writeTimeout(10L, TimeUnit.SECONDS)
+            .readTimeout(1L, TimeUnit.SECONDS)
+            .build()
+        val request = Request.Builder().url("http://$url").build()
+        getRequestLog(request)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            val response = okhttpClient.newCall(request).execute()
+            getResponseLog(response)
+        }
+    }
+
+
+    fun getRequestLog(request: Request) {
+        var body: String? = null
+        val requestBody = request.body
+        requestBody?.let {
+            val buffer = Buffer()
+            requestBody.writeTo(buffer)
+            var charset: Charset? = UTF8
+            val contentType = requestBody.contentType()
+            contentType?.let {
+                charset = contentType.charset(UTF8)
+            }
+            body = buffer.readString(charset!!)
+        }
+        Log.i(TAG,
+            "发送请求: method：" + request.method
+                    + "\nurl：" + request.url
+                    + "\n请求头：" + request.headers
+                    + "\n请求参数: " + body)
+    }
+
+    fun getResponseLog(response: Response) {
+        if (response.isSuccessful) {
+            val responseBody = response.body
+            var body: String? = null
+            val requestBody = response.request.body
+            requestBody?.let {
+                val buffer = Buffer()
+                requestBody.writeTo(buffer)
+                var charset: Charset? = UTF8
+                val contentType = requestBody.contentType()
+                contentType?.let {
+                    charset = contentType.charset(UTF8)
+                }
+                body = buffer.readString(charset!!)
+            }
+            val rBody: String
+
+            val source = responseBody!!.source()
+            source.request(java.lang.Long.MAX_VALUE)
+            val buffer = source.buffer()
+
+            var charset: Charset? = UTF8
+            val contentType = responseBody.contentType()
+            contentType?.let {
+                try {
+                    charset = contentType.charset(UTF8)
+                } catch (e: UnsupportedCharsetException) {
+                    Log.e(TAG, e.message ?:"")
+                }
+            }
+            rBody = buffer.clone().readString(charset!!)
+            Log.i(TAG,
+                "收到响应: code:" + response.code
+                        + "\n请求url：" + response.request.url
+                        + "\n请求body：" + body
+                        + "\nResponse: " + rBody)
+        }
     }
 }

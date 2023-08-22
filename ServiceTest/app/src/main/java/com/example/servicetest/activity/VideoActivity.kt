@@ -15,8 +15,8 @@ class VideoActivity : BaseActivity<ActivityVideoAcitivityBinding>(), View.OnClic
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val uri = Uri.parse("android.resource://$packageName/${R.raw.text1}")
-        binding.videoView.setVideoURI(uri)
+//        val uri = Uri.parse("android.resource://$packageName/${R.raw.text1}")
+//        binding.videoView.setVideoURI(uri)
         initVideo()
     }
 
