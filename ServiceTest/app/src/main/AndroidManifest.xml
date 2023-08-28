@@ -28,6 +28,7 @@
         <activity android:name=".activity.mPaintActivity" />
         <activity android:name=".activity.okhttpTestActivity" />
         <activity android:name=".activity.viewPager2Acitivity" />
+        <activity android:name=".activity.ScrollTextActivity" />
         <activity android:name=".BroadCastTest" />
         <activity android:name=".activity.FragmentTextActivity" />
         <activity

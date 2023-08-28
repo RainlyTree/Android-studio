@@ -294,6 +294,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         startActivity(intent)
     }
 
+    fun openScrollActivity(view: View) {
+        val intent = Intent(this, ScrollTextActivity::class.java)
+        startActivity(intent)
+    }
+
     fun callPhone() {
         val intent = Intent(Intent.ACTION_CALL)
         val data = Uri.parse("tel:" + "10086")

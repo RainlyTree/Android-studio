@@ -260,6 +260,15 @@
                         android:onClick="openVideoActivity"
                         android:text="VideoActivity" />
 
+                    <Button
+                        android:id="@+id/ScrollText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/TextRxJavaActivity"
+                        android:layout_toRightOf="@id/VideoActivity"
+                        android:text="ScrollText"
+                        android:onClick="openScrollActivity"/>
+
                 </RelativeLayout>
 
             </androidx.core.widget.NestedScrollView>
