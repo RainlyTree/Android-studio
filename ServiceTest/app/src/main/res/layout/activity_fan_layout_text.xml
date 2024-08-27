@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.FanLayoutTextActivity">
+
+    <com.example.servicetest.FanLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:item_offset="-20dp"
+        app:bearing_type="color"
+        app:bearing_color="@color/CC_28"
+        app:bearing_radius="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:bearing_on_bottom="false">
+
+        <ImageView
+            android:id="@+id/iv_1"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@color/purple_200"/>
+
+        <ImageView
+            android:id="@+id/iv_2"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@color/black"/>
+
+        <ImageView
+            android:id="@+id/iv_3"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@color/teal_200"/>
+
+        <ImageView
+            android:id="@+id/iv_4"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@color/CC_3"/>
+
+        <ImageView
+            android:id="@+id/iv_5"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@color/CC_4"/>
+
+        <ImageView
+            android:id="@+id/iv_6"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@color/CC_5"/>
+
+
+    </com.example.servicetest.FanLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

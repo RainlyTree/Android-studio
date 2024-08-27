@@ -5,8 +5,8 @@
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:name=".application_text.myApplicationController"
@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiceTest"
         tools:targetApi="n">
+        <activity
+            android:name=".activity.FanLayoutTextActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.VideoActivity"
             android:configChanges="keyboardHidden|screenLayout|orientation|smallestScreenSize|screenSize|locale"
@@ -31,10 +34,13 @@
         <activity android:name=".activity.ScrollTextActivity" />
         <activity android:name=".BroadCastTest" />
         <activity android:name=".activity.FragmentTextActivity" />
+        <activity android:name=".activity.RecyclerViewTestActivity" />
+        <activity android:name=".activity.PathRecyclerViewActivity" />
         <activity
             android:name=".activity.SecondActivity"
             android:label="@string/title_activity_second"
-            android:theme="@style/Theme.ServiceTest.NoActionBar">
+            android:theme="@style/Theme.ServiceTest.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.intent.activitytext.ACTION_START" />
 
@@ -45,7 +51,8 @@
         <activity android:name=".recyclerViewGrid" />
         <activity android:name=".activity.RecyclerViewActivity" />
         <activity android:name=".WebActivity" />
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

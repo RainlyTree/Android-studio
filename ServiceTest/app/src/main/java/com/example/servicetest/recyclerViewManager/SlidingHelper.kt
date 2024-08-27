@@ -222,6 +222,32 @@ class SlidingHelper(context: Context, pivotX: Float, pivotY: Float, listener: On
     }
 
     /**
+     * 打断动画
+     */
+    fun abortAnimation() {
+        checkIsRecycled()
+        if (!mScroller!!.isFinished) {
+            mScroller!!.abortAnimation()
+        }
+    }
+
+    /**
+     * 更新当前手指触摸的坐标
+     */
+    fun updateMovement(event: MotionEvent) {
+        checkIsRecycled()
+        if (event.action == MotionEvent.ACTION_MOVE || event.action == MotionEvent.ACTION_DOWN) {
+            if (isSelfSliding) {
+                mStartX = event.rawX
+                mStartY = event.rawY
+            } else {
+                mStartX = event.x
+                mStartY = event.y
+            }
+        }
+    }
+
+    /**
      * 设置自身滑动
      *
      * @param isSelfSliding 是否view自身滑动

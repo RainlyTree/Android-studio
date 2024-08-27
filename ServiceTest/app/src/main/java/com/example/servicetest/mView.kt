@@ -32,6 +32,7 @@ class mView(context: Context, attributeSet: AttributeSet) : View(context, attrib
         canvas.drawCircle(width.toFloat() / 2, width.toFloat() / 2, (width.toFloat() - 3) / 2, paint)
 
 
+
         // 绘制圆形
         canvas.drawCircle(40F, 40f, 30f, paint);
         // 绘制正方形

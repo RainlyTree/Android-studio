@@ -10,6 +10,11 @@
     <com.example.servicetest.mView
         android:id="@+id/mView_text"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"/>
+
+    <com.example.servicetest.DashView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
 </LinearLayout>

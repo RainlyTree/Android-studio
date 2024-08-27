@@ -34,6 +34,9 @@ class textRxjavaActivity : BaseActivity<ActivityTextRxjavaBinding>() {
     override fun onResume() {
         super.onResume()
         text1()
+        Schedulers.newThread().scheduleDirect {
+            text线程切换()
+        }
     }
 
     override fun onPause() {
@@ -151,5 +154,34 @@ class textRxjavaActivity : BaseActivity<ActivityTextRxjavaBinding>() {
 
     fun text4() {
 //        Observable.defer()
+    }
+
+    fun text线程切换() {
+        Log.e("TAG", "test():" + Thread.currentThread().name)
+        Observable.create(ObservableOnSubscribe<String> { emitter ->
+            Log.e("TAG", "subscribe():" + Thread.currentThread().name)
+            emitter.onNext("1")
+            emitter.onNext("2")
+            emitter.onComplete()
+        }).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Observer<String> {
+                override fun onSubscribe(d: Disposable) {
+                    Log.e("TAG", "onSubscribe():" + Thread.currentThread().name)
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.e("TAG", "onError():" + Thread.currentThread().name)
+                }
+
+                override fun onComplete() {
+                    Log.e("TAG", "onComplete():" + Thread.currentThread().name)
+                }
+
+                override fun onNext(t: String) {
+                    Log.e("TAG", "onNext():" + Thread.currentThread().name)
+                }
+
+            })
     }
 }

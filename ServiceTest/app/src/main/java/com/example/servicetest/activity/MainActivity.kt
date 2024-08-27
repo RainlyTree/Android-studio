@@ -1,5 +1,6 @@
 package com.example.servicetest.activity
 
+import android.Manifest
 import android.app.*
 import android.content.*
 import android.content.pm.PackageManager
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.webkit.*
@@ -98,7 +100,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         //设置跳转返回内容
         myAL = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if(it.data != null && it.resultCode == Activity.RESULT_OK) {
+            if(it.data != null && it.resultCode == RESULT_OK) {
                 it.data?.getStringExtra("ResultData")?.let {
                     Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
                 }
@@ -108,6 +110,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
         //获取广播实例
+        val view = LayoutInflater.from(this).inflate(R.layout.text_inflate, binding.root, false)
+        binding.flBg.addView(view)
     }
 
     fun startService(view: View) {
@@ -157,7 +161,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setAutoCancel(true)
             .setContentTitle("普通通知")
-        val notifacationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notifacationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel("default", "Simple", NotificationManager.IMPORTANCE_DEFAULT)
             notifacationManager.createNotificationChannel(channel)
@@ -179,7 +183,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setAutoCancel(true)
             .setContentTitle("折叠式通知，打开是自定义的remoteview")
-        val notifacationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notifacationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val notification = builder.build()
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel("self", "self", NotificationManager.IMPORTANCE_DEFAULT)
@@ -208,7 +212,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val hangPendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         builder.setFullScreenIntent(hangPendingIntent, true)
 
-        val notifacationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notifacationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel("suspend", "suspend", NotificationManager.IMPORTANCE_HIGH)
             notifacationManager.createNotificationChannel(channel)
@@ -216,10 +220,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         notifacationManager.notify(3, builder.build())
     }
 
-    @NeedsPermission(android.Manifest.permission.CALL_PHONE)
+    @NeedsPermission(Manifest.permission.CALL_PHONE)
     fun call(view: View) {
-        val permission = Array<String>(1) {android.Manifest.permission.CALL_PHONE}
-        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+        val permission = Array<String>(1) { Manifest.permission.CALL_PHONE}
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, permission, PERMISSIONS_REQUEST_CALL_PHONE)
         } else {
             callPhone()
@@ -299,6 +303,27 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         startActivity(intent)
     }
 
+    /**
+     * 旋转功能
+     */
+    fun openFanLayoutActivity(view: View) {
+        val intent = Intent(this, FanLayoutTextActivity::class.java)
+        startActivity(intent)
+    }
+
+    //侧滑
+    fun openRecyclerViewActivity(view: View) {
+        val intent = Intent(this, RecyclerViewTestActivity::class.java)
+        startActivity(intent)
+    }
+
+    //侧滑
+    fun openPathRecyclerViewActivity(view: View) {
+        val intent = Intent(this, PathRecyclerViewActivity::class.java)
+        startActivity(intent)
+    }
+
+
     fun callPhone() {
         val intent = Intent(Intent.ACTION_CALL)
         val data = Uri.parse("tel:" + "10086")
@@ -310,7 +335,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
-    @OnShowRationale(android.Manifest.permission.CALL_PHONE)
+    @OnShowRationale(Manifest.permission.CALL_PHONE)
     fun showWhy(request: PermissionRequest) {
         AlertDialog.Builder(this)
             .setMessage("提醒用户为什么开启此权限")
@@ -319,12 +344,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }).show()
     }
 
-    @OnPermissionDenied(android.Manifest.permission.CALL_PHONE)
+    @OnPermissionDenied(Manifest.permission.CALL_PHONE)
     fun showDenied() {
         Toast.makeText(this, "用户选择拒绝给出的提示", Toast.LENGTH_SHORT).show()
     }
 
-    @OnNeverAskAgain(android.Manifest.permission.CALL_PHONE)
+    @OnNeverAskAgain(Manifest.permission.CALL_PHONE)
     fun showNotAsk() {
         AlertDialog.Builder(this)
             .setMessage("该功能需要访问电话的权限，不开启将无法正常工作！")
@@ -342,7 +367,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 callPhone()
             } else {
-                if(!ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.CALL_PHONE)) {
+                if(!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CALL_PHONE)) {
                     val dialog = AlertDialog.Builder(this)
                         .setMessage("该功能需要访问电话权限")
                         .setPositiveButton("确定", DialogInterface.OnClickListener() {

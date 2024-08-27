@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="FanLayout">
+
+        <!--轴承类型-->
+        <attr name="bearing_type" format="enum">
+            <enum name="color" value="0"/>
+            <enum name="view" value="1"/>
+        </attr>
+
+        <!--轴承半径-->
+        <attr name="bearing_radius" format="dimension"/>
+        <!--轴承颜色 (type == color时才有效)-->
+        <attr name="bearing_color" format="color"/>
+        <!--自定义的轴承布局 只有type == view时生效-->
+        <attr name="bearing_layout" format="reference"/>
+        <!--轴承是否可以转动-->
+        <attr name="bearing_can_roll" format="boolean"/>
+        <!--轴承是否在底部-->
+        <attr name="bearing_on_bottom" format="boolean"/>
+        <!--item偏移量-->
+        <attr name="item_offset" format="dimension"/>
+        <!--gravity-->
+        <attr name="bearing_gravity" format="integer"/>
+        <!--设置item是否保持垂直-->
+        <attr name="item_direction_fixed" format="boolean"/>
+
+        <!--布局模式-->
+        <attr name="item_layout_mode" format="enum">
+            <enum name="average" value="0"/>
+            <enum name="fixed" value="1"/>
+        </attr>
+        <!--偏移角度-->
+        <attr name="item_angle_offset" format="float"/>
+    </declare-styleable>
+</resources>
